@@ -1,7 +1,10 @@
-// import static io.wcm.devops.jenkins.pipeline.utils.ConfigConstants.*
-
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'maven:3.8.1-adoptopenjdk-11'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
     // environment {
     //     CREDENTIALS_ID = credentials('github-token')
     // }
@@ -10,10 +13,10 @@ pipeline {
         stage('Checkout') {
             agent { label 'node-1' }
             steps {
-                checkoutScm(
-                    (SCM) : [
-                        (SCM_URL) : "git@github.com:Dezo2018/Jenkins-Lab14.git",
-                        (SCM_BRANCHES) : [[name: '*/main']],
+                checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: '*/main']],
+                        userRemoteConfigs : [[url: 'https://github.com/Dezo2018/Jenkins-Lab14.git']] 
                         // (SCM_CREDENTIALS_ID) : "$CREDENTIALS_ID"
                     ]
                 )
