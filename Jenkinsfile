@@ -16,7 +16,7 @@ pipeline {
                 checkout([
                         $class: 'GitSCM',
                         branches: [[name: '*/main']],
-                        userRemoteConfigs : [[credentialsId: '3294a4ff-262b-4d7c-8e4b-ef0b55b01917', url: 'https://github.com/Dezo2018/Jenkins-Lab14.git']] 
+                        userRemoteConfigs : [[credentialsId: 'jenkins-integration', url: 'https://github.com/Dezo2018/Jenkins-Lab14.git']] 
                         // (SCM_CREDENTIALS_ID) : "$CREDENTIALS_ID"
                     ]
                 )
