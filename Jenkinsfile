@@ -17,8 +17,8 @@ pipeline {
             steps {
                 checkoutScm(
                     (SCM) : [
-                        (SCM_URL) : "git@github.com:Dezo2018/Jenkins-Lab14.git"
-                        (SCM_BRANCHES) : [[name: '*/main']]
+                        (SCM_URL) : "git@github.com:Dezo2018/Jenkins-Lab14.git",
+                        (SCM_BRANCHES) : [[name: '*/main']],
                         // (SCM_CREDENTIALS_ID) : "$CREDENTIALS_ID"
                     ]
                 )
