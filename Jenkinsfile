@@ -1,4 +1,4 @@
-import static io.wcm.devops.jenkins.pipeline.utils.ConfigConstants.*
+// import static io.wcm.devops.jenkins.pipeline.utils.ConfigConstants.*
 
 pipeline {
     agent {
