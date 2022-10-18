@@ -5,21 +5,14 @@ pipeline {
             args '-v /root/.m2:/root/.m2'
         }
     }
-    // environment {
-    //     CREDENTIALS_ID = credentials('github-token')
-    // }
 
     stages {
         stage('Checkout') {
             agent { label 'node-1' }
             steps {
-                checkout([
-                        $class: 'GitSCM',
-                        branches: [[name: '*/main']],
-                        userRemoteConfigs : [[credentialsId: '3294a4ff-262b-4d7c-8e4b-ef0b55b01917', url: 'https://github.com/Dezo2018/Jenkins-Lab14.git']] 
-                        // (SCM_CREDENTIALS_ID) : "$CREDENTIALS_ID"
-                    ]
-                )
+                git url: 'https://github.com/Dezo2018/Jenkins-Lab14.git',
+                    credentialsId: '3294a4ff-262b-4d7c-8e4b-ef0b55b01917',
+                    branch: 'main'
             }
         }
         stage('Build') {
