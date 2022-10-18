@@ -1,12 +1,7 @@
 // import static io.wcm.devops.jenkins.pipeline.utils.ConfigConstants.*
 
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.8.1-adoptopenjdk-11'
-            args '-v /root/.m2:/root/.m2'
-        }
-    }
+    agent any
     // environment {
     //     CREDENTIALS_ID = credentials('github-token')
     // }
