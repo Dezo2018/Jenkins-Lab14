@@ -5,7 +5,7 @@ pipeline {
             agent { label 'Slave Node (1)' }
             steps {
                 git url: 'https://github.com/Dezo2018/Jenkins-Lab14.git',
-                    credentialsId: '45f94a69-5685-478a-b17e-27e994b424c3',
+                    credentialsId: '45085cc3-8539-46a1-8357-a08ac9a463ea',
                     branch: 'main'
             }
         }
