@@ -1,5 +1,8 @@
 pipeline {
     agent none
+    tools {
+        maven 'M2_HOME'
+    }
     stages {
         stage('Checkout') {
             agent { label 'Slave Node (1)' }
