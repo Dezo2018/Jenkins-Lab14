@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.8.1-adoptopenjdk-11'
-            args '-v /root/.m2:/root/.m2'
-        }
-    }
+    agent none
     stages {
         stage('Checkout') {
             agent { label 'Slave Node (1)' }
@@ -15,7 +10,7 @@ pipeline {
             }
         }
         stage('Build') {
-            agent { label 'Salve Node (2)' }
+            agent { label 'Salve Node (2) & docker { image "maven:3.8.1-adoptopenjdk-11" args "-v /root/.m2:/root/.m2" }' }
             steps {
                 sh 'mvn -B DskipTests clean package'
                 sh 'mvn test'
