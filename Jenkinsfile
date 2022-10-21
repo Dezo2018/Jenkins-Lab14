@@ -15,7 +15,7 @@ pipeline {
         stage('Build') {
             agent { label 'Slave Node (2)' }
             steps {
-                sh 'mvn -B DskipTests clean package'
+                sh 'mvn -B -DskipTests clean package'
                 sh 'mvn test'
             }
             post {
