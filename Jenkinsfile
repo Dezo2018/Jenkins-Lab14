@@ -12,9 +12,6 @@ pipeline {
         stage('Build') {
             agent { label 'Slave Node (2)' }
             steps {
-                git url: 'https://github.com/Dezo2018/Jenkins-Lab14.git',
-                    credentialsId: '7d937aa7-c4a9-4d20-a848-be32db0e02d5',
-                    branch: 'main'
                 sh 'mvn -B DskipTests clean package'
                 sh 'mvn test'
             }
