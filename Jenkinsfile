@@ -11,16 +11,16 @@ pipeline {
         choice(
             choices: ['ONE', 'TWO'],
             name: 'ChoiceParam'
-        ),
+        )
         booleanParam(
             defaultValue: true,
             description: "",
             name: 'booleanParam'
-        ),
+        )
         string(
             defaultValue: "JenkinsLab",
             name: 'StringParam'
-        ),
+        )
         text(
             defaultValue: ''' 
             This is my first text
