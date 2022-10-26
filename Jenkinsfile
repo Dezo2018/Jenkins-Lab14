@@ -40,7 +40,7 @@ pipeline {
                             def identity=awsIdentity();//Log AWS credentials
                         }
                         // Upload files from working directory '*' in your project workspace
-                        s3Upload(bucket:"desmond-jen-bucket", workingDir:'home/ec2-user/workspace/my-app/target', includePathPattern:'**/*.jar');
+                        s3Upload(bucket:"desmond-jen-bucket", workingDir:'', includePathPattern:'**/*.jar');
                     }
                 };
             }
