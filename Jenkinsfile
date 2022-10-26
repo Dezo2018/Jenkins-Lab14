@@ -31,7 +31,7 @@ pipeline {
         stage('Upload') {
             agent { label 'Slave Node (2)' }
             steps {
-                dir('home/ec2-user/workspace'){
+                dir('home/ec2-user/'){
 
                     pwd(); //Log current directory
 
