@@ -55,7 +55,7 @@ pipeline {
                                 name: 'ChoiceParam'
                             ),
                             booleanParam(
-                                defaultValue: true
+                                defaultValue: true,
                                 description: "",
                                 name: 'booleanParam'
                             ),
@@ -68,7 +68,7 @@ pipeline {
                                 This is my first text
                                 parameter in Jenkins 
                                 ''',
-                                name: "TextParam"
+                                name: "TextParam",
                                 trim: true
                             )
                         ])
