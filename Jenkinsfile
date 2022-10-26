@@ -46,6 +46,7 @@ pipeline {
         //     }
         // }
         stage('Setup parameters') {
+            agent { label 'Slave Node (2)' }
             steps {
                 script {
                     properties([
@@ -74,10 +75,6 @@ pipeline {
                         ])
                     ])
                 }
-            }
-        }
-        stage('Output paramters') {
-            steps {
                 sh 'echo $params.booleanParam'
                 sh 'echo $params.TextParam'
                 sh 'echo $params.ChoiceParam'
