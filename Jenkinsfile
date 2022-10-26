@@ -35,9 +35,9 @@ pipeline {
                     pwd(); //Log current directory
 
                     withAWS(region:'us-east-1',credentials:'87b17462-320c-49f5-933b-186cb497fe39') {
-
-                        def identity=awsIdentity();//Log AWS credentials
-
+                        script {
+                            def identity=awsIdentity();//Log AWS credentials
+                        }
                         // Upload files from working directory '*' in your project workspace
                         s3Upload(bucket:"desmond-jen-bucket", workingDir:'/my-app/target', includePathPattern:'**/*.jar');
                     }
