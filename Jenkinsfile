@@ -28,22 +28,20 @@ pipeline {
                 }
             }
         }
-        node('Slave Node (2)') {
-            stage('Upload') {
-                steps {
-                    dir('home/ec2-user/workspace'){
+        stage('Upload') {
+            steps {
+                dir('home/ec2-user/workspace'){
 
-                        pwd(); //Log current directory
+                    pwd(); //Log current directory
 
-                        withAWS(region:'us-east-1',credentials:'87b17462-320c-49f5-933b-186cb497fe39') {
+                    withAWS(region:'us-east-1',credentials:'87b17462-320c-49f5-933b-186cb497fe39') {
 
-                            def identity=awsIdentity();//Log AWS credentials
+                        def identity=awsIdentity();//Log AWS credentials
 
-                            // Upload files from working directory '*' in your project workspace
-                            s3Upload(bucket:"desmond-jen-bucket", workingDir:'/my-app/target', includePathPattern:'**/*.jar');
-                        }
-                    };
-                }
+                        // Upload files from working directory '*' in your project workspace
+                        s3Upload(bucket:"desmond-jen-bucket", workingDir:'/my-app/target', includePathPattern:'**/*.jar');
+                    }
+                };
             }
         }
     }
