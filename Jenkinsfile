@@ -28,9 +28,8 @@ pipeline {
                 }
             }
         }
-        stage('Upload') {
-            agent { label 'Slave Node (2)' }
-            steps {
+        node('Slave Node (2)') {
+            stage('Upload') {
                 dir('home/ec2-user/workspace'){
 
                     pwd(); //Log current directory
@@ -39,7 +38,7 @@ pipeline {
 
                         def identity=awsIdentity();//Log AWS credentials
 
-                        // Upload files from working directory 'dist' in your project workspace
+                        // Upload files from working directory '*' in your project workspace
                         s3Upload(bucket:"desmond-jen-bucket", workingDir:'/my-app/target', includePathPattern:'**/*.jar');
                     }
                 };
