@@ -7,6 +7,29 @@ pipeline {
     tools {
         maven 'Maven 3.8.6'
     }
+    parameters{
+        choice(
+            choices: ['ONE', 'TWO'],
+            name: 'ChoiceParam'
+        ),
+        booleanParam(
+            defaultValue: true,
+            description: "",
+            name: 'booleanParam'
+        ),
+        string(
+            defaultValue: "JenkinsLab",
+            name: 'StringParam'
+        ),
+        text(
+            defaultValue: ''' 
+            This is my first text
+            parameter in Jenkins 
+            ''',
+            name: "TextParam",
+            trim: true
+        )
+    }
     stages {
         stage('Checkout') {
             agent { label 'Slave Node (1)' }
@@ -48,33 +71,6 @@ pipeline {
         stage('Setup parameters') {
             agent { label 'Slave Node (2)' }
             steps {
-                script {
-                    properties([
-                        parameters([
-                            choice(
-                                choices: ['ONE', 'TWO'],
-                                name: 'ChoiceParam'
-                            ),
-                            booleanParam(
-                                defaultValue: true,
-                                description: "",
-                                name: 'booleanParam'
-                            ),
-                            string(
-                                defaultValue: "JenkinsLab",
-                                name: 'StringParam'
-                            ),
-                            text(
-                                defaultValue: ''' 
-                                This is my first text
-                                parameter in Jenkins 
-                                ''',
-                                name: "TextParam",
-                                trim: true
-                            )
-                        ])
-                    ])
-                }
                 sh 'echo $params.booleanParam'
                 sh 'echo $params.TextParam'
                 sh 'echo $params.ChoiceParam'
