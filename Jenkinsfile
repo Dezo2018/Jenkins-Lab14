@@ -28,21 +28,59 @@ pipeline {
                 }
             }
         }
-        stage('Upload') {
-            agent { label 'Slave Node (2)' }
+        // stage('Upload') {
+        //     agent { label 'Slave Node (2)' }
+        //     steps {
+        //         dir(''){
+
+        //             pwd(); //Log current directory
+
+        //             withAWS(region:'us-east-1',credentials:'1bb2e8c8-84d5-481c-992c-b90c290717b5') {
+        //                 script {
+        //                     def identity=awsIdentity();//Log AWS credentials
+        //                 }
+        //                 // Upload files from working directory '*' in your project workspace
+        //                 s3Upload(bucket:"desmond-jen-bucket", workingDir:'', includePathPattern:'**/*.jar');
+        //             }
+        //         };
+        //     }
+        // }
+        stage('Setup parameters') {
             steps {
-                dir(''){
-
-                    pwd(); //Log current directory
-
-                    withAWS(region:'us-east-1',credentials:'1bb2e8c8-84d5-481c-992c-b90c290717b5') {
-                        script {
-                            def identity=awsIdentity();//Log AWS credentials
-                        }
-                        // Upload files from working directory '*' in your project workspace
-                        s3Upload(bucket:"desmond-jen-bucket", workingDir:'', includePathPattern:'**/*.jar');
-                    }
-                };
+                script {
+                    properties([
+                        parameters([
+                            choice(
+                                choices: ['ONE', 'TWO'],
+                                name: 'ChoiceParam'
+                            ),
+                            booleanParam(
+                                defaultValue: true
+                                description: "",
+                                name: 'booleanParam'
+                            ),
+                            string(
+                                defaultValue: "JenkinsLab",
+                                name: 'StringParam'
+                            ),
+                            text(
+                                defaultValue: ''' 
+                                This is my first text
+                                parameter in Jenkins 
+                                ''',
+                                name: "TextParam"
+                                trim: true
+                            )
+                        ])
+                    ])
+                }
+            }
+        }
+        stage('Output paramters') {
+            steps {
+                sh 'echo $params.booleanParam'
+                sh 'echo $params.TextParam'
+                sh 'echo $params.ChoiceParam'
             }
         }
     }
