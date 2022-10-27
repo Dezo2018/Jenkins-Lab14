@@ -1,3 +1,4 @@
+@Library('shared-library')
 pipeline {
     agent none
     environment {
@@ -58,12 +59,12 @@ pipeline {
 
         //             pwd(); //Log current directory
 
-        //             withAWS(region:'us-east-1',credentials:'1bb2e8c8-84d5-481c-992c-b90c290717b5') {
+        //             withAWS(region: env.region, credentials:'1bb2e8c8-84d5-481c-992c-b90c290717b5') {
         //                 script {
         //                     def identity=awsIdentity();//Log AWS credentials
         //                 }
         //                 // Upload files from working directory '*' in your project workspace
-        //                 s3Upload(bucket:"desmond-jen-bucket", workingDir:'', includePathPattern:'**/*.jar');
+        //                 s3Upload(bucket: env.bucket, workingDir:'', includePathPattern:'**/*.jar');
         //             }
         //         };
         //     }
