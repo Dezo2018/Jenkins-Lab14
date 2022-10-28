@@ -45,6 +45,7 @@ def call(String urlRepo) {
             stage('Build') {
                 agent { label 'Slave Node (2)' }
                 steps {
+                    sh 'cd my-app'
                     sh 'mvn -B -DskipTests clean package'
                     sh 'mvn test'
                 }
