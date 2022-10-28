@@ -1,2 +1,2 @@
 @Library('shared-library@main') _
-mvnBuild
+mvnBuild 'https://github.com/Dezo2018/Jenkins-Lab14.git'

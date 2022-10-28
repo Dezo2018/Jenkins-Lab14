@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def call() {
+def call(String urlRepo) {
     pipeline {
         agent none
         environment {
@@ -37,7 +37,7 @@ def call() {
             stage('Checkout') {
                 agent { label 'Slave Node (1)' }
                 steps {
-                    git url: 'https://github.com/Dezo2018/Jenkins-Lab14.git',
+                    git url: '${urlRepo}',
                         credentialsId: '7d937aa7-c4a9-4d20-a848-be32db0e02d5',
                         branch: 'main'
                 }
