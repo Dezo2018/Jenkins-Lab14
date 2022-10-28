@@ -44,7 +44,9 @@ pipeline {
             }
         }
         stage('Build') {
-            mvnBuild
+            steps {
+                mvnBuild
+            }
         }
         // stage('Upload') {
         //     agent { label 'Slave Node (2)' }
