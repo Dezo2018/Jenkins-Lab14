@@ -44,7 +44,9 @@ pipeline {
         stage('Build') {
             agent { label 'Slave Node (2)' }
             steps {
-                echo "mvnBuild"
+                script {
+                    mvnBuild
+                }
             }
             post {
                 always {
