@@ -1,6 +1,4 @@
-libraries {
-    lib('shared-library')
-}
+@Library('shared-library@main')_
 
 pipeline {
     agent none
@@ -44,8 +42,14 @@ pipeline {
             }
         }
         stage('Build') {
+            agent { label 'Slave Node (2)' }
             steps {
                 mvnBuild
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
             }
         }
         // stage('Upload') {
