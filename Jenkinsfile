@@ -1,2 +1,2 @@
 @Library('shared-library@main') _
-mvnBuild ''
+mvnBuild() 

@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def call(String urlRepo) {
+def call() {
     pipeline {
         agent none
         environment {
