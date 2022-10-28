@@ -37,7 +37,7 @@ def call(String urlRepo) {
             stage('Checkout') {
                 agent { label 'Slave Node (1)' }
                 steps {
-                    git url: '${urlRepo}',
+                    git url: "${urlRepo}",
                         credentialsId: '7d937aa7-c4a9-4d20-a848-be32db0e02d5',
                         branch: 'main'
                 }
