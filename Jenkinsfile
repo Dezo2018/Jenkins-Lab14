@@ -1,2 +1,2 @@
-@Library('shared-library')
+@Library('shared-library') _
 mvnBuild
